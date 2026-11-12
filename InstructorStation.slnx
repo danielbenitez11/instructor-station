@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/FlightSim.ConsoleRunner/FlightSim.ConsoleRunner.csproj" />
+    <Project Path="src/FlightSim.Core/FlightSim.Core.csproj" />
+    <Project Path="src/InstructorStation.Wpf/InstructorStation.Wpf.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/FlightSim.Core.Tests/FlightSim.Core.Tests.csproj" />
+  </Folder>
+</Solution>
