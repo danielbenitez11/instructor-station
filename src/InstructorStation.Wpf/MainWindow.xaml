@@ -13,5 +13,9 @@
         <TextBlock FontSize="20" Text="{Binding State.VerticalSpeedFpm, StringFormat='Vertical Speed: {0:F0} fpm'}" />
         <TextBlock FontSize="16" Margin="0,20,0,0" Text="{Binding Throttle, StringFormat='Throttle: {0:P0}'}" />
         <Slider Minimum="0" Maximum="1" Value="{Binding Throttle}" />
+        <TextBlock FontSize="16" Margin="0,10,0,0" Text="{Binding PitchDeg, StringFormat='Pitch: {0:F0}°'}" />
+        <Slider Minimum="-20" Maximum="20" Value="{Binding PitchDeg}" />
+        <TextBlock FontSize="16" Margin="0,10,0,0" Text="{Binding BankDeg, StringFormat='Bank: {0:F0}°'}" />
+        <Slider Minimum="-45" Maximum="45" Value="{Binding BankDeg}" />
     </StackPanel>
 </Window>

@@ -47,6 +47,18 @@ namespace InstructorStation.Wpf.Mvvm
             }
         }
 
+        public double PitchDeg
+        {
+            get => State.PitchDeg;
+            set => State = State with { PitchDeg = value };
+        }
+
+        public double BankDeg
+        {
+            get =>  State.BankDeg;
+            set => State = State with { BankDeg = value };
+        }
+
         private void OnTick(object? sender, EventArgs e)
         {
             State = _flightModel.Step(State, new ControlInputs { Throttle = _throttle }, TickInterval);
