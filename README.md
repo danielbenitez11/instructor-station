@@ -2,7 +2,6 @@
 
 A small flight simulator **instructor station** built with C# and WPF. A simplified flight model runs at a fixed 20 Hz step, and an instructor watches live telemetry, moves the controls and injects an engine failure.
 
-> Built as a learning project to practise C#/.NET fundamentals, test-driven development and MVVM.
 
 ## Features
 
