@@ -6,7 +6,14 @@
         xmlns:local="clr-namespace:InstructorStation.Wpf"
         mc:Ignorable="d"
         Title="Instructor Station" Height="450" Width="800">
+
+
     <StackPanel Margin="20">
+        <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
+            <Button Content="Start" Command="{Binding StartCommand}" Width="80" Margin="0,0,10,0" />
+            <Button Content="Pause" Command="{Binding PauseCommand}" Width="80" Margin="0,0,10,0" />
+            <Button Content="Reset" Command="{Binding ResetCommand}" Width="80" Margin="0,0,10,0" />
+        </StackPanel>
         <TextBlock FontSize="20" Text="{Binding State.AltitudeFt, StringFormat='Altitude: {0:F0} ft'}" />
         <TextBlock FontSize="20" Text="{Binding State.AirspeedKt, StringFormat='Airspeed: {0:F0} kt'}" />
         <TextBlock FontSize="20" Text="{Binding State.HeadingDeg, StringFormat='Heading: {0:F0} deg'}" />
@@ -16,6 +23,6 @@
         <TextBlock FontSize="16" Margin="0,10,0,0" Text="{Binding PitchDeg, StringFormat='Pitch: {0:F0}°'}" />
         <Slider Minimum="-20" Maximum="20" Value="{Binding PitchDeg}" />
         <TextBlock FontSize="16" Margin="0,10,0,0" Text="{Binding BankDeg, StringFormat='Bank: {0:F0}°'}" />
-        <Slider Minimum="-45" Maximum="45" Value="{Binding BankDeg}" />
+        <Slider Minimum="-30" Maximum="30" Value="{Binding BankDeg}" />
     </StackPanel>
 </Window>
