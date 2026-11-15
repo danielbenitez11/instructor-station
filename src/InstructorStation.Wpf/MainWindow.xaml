@@ -5,8 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InstructorStation.Wpf"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-
-    </Grid>
+        Title="Instructor Station" Height="450" Width="800">
+    <StackPanel Margin="20">
+        <TextBlock FontSize="20" Text="{Binding State.AltitudeFt, StringFormat='Altitude: {0:F0} ft'}" />
+        <TextBlock FontSize="20" Text="{Binding State.AirspeedKt, StringFormat='Airspeed: {0:F0} kt'}" />
+        <TextBlock FontSize="20" Text="{Binding State.HeadingDeg, StringFormat='Heading: {0:F0} deg'}" />
+        <TextBlock FontSize="20" Text="{Binding State.VerticalSpeedFpm, StringFormat='Vertical Speed: {0:F0} fpm'}" />
+    </StackPanel>
 </Window>
