@@ -13,6 +13,8 @@ namespace FlightSim.Core
 
         private const double AirspeedResponseRate = 0.1;
 
+        private const double FpmPerKnot = 101.27;
+
         public AircraftState Step(AircraftState state, ControlInputs controls, TimeSpan dt)
         {
             double seconds = dt.TotalSeconds;
@@ -21,11 +23,26 @@ namespace FlightSim.Core
 
             double rawHeading = state.HeadingDeg + turnRate * seconds;
 
-            double targetAirspeedKt = controls.Throttle * MaxAirspeedKt;
+            double effectiveThrottle = state.EngineFailed ? 0 : controls.Throttle;
+
+            double targetAirspeedKt = effectiveThrottle * MaxAirspeedKt;
 
             double newAirspeedKt = state.AirspeedKt + (targetAirspeedKt - state.AirspeedKt) * AirspeedResponseRate * seconds;
 
-            return state with { HeadingDeg = NormalizeHeading(rawHeading), AirspeedKt = newAirspeedKt };
+            double newVerticalSpeedFpm = state.AirspeedKt * FpmPerKnot * Math.Sin(DegreesToRadians(state.PitchDeg));
+
+            double newAltitudeFt = Math.Max(0, state.AltitudeFt + newVerticalSpeedFpm * seconds / 60);
+
+            
+
+
+            return state with 
+            {
+                HeadingDeg = NormalizeHeading(rawHeading), 
+                AirspeedKt = newAirspeedKt, 
+                AltitudeFt = newAltitudeFt, 
+                VerticalSpeedFpm = newVerticalSpeedFpm
+            };
         }
         
 
@@ -33,10 +50,16 @@ namespace FlightSim.Core
         {
             return (heading + 360) % 360;
         }
-    
-    
-    
-    
+
+
+        private static double DegreesToRadians(double degrees)
+        {
+            return degrees * Math.PI / 180;
+        }
+
+
+
+
     }
 
 }

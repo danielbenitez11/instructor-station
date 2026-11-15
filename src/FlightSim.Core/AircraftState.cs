@@ -8,5 +8,6 @@
         public double VerticalSpeedFpm { get; init; }
         public double PitchDeg { get; init; }
         public double BankDeg { get; init; }
+        public bool EngineFailed { get; init; }
     }
 }
