@@ -6,6 +6,8 @@ namespace InstructorStation.Wpf.Mvvm
     internal class MainViewModel : ViewModelBase
     {
         private AircraftState _state = new AircraftState { AltitudeFt = 5000, AirspeedKt = 200 };
+
+        private double _throttle = 0;
         private readonly IFlightModel _flightModel = new SimpleFlightModel();
         private static readonly TimeSpan TickInterval = TimeSpan.FromMilliseconds(50);
         private readonly DispatcherTimer _timer = new DispatcherTimer();
@@ -32,9 +34,22 @@ namespace InstructorStation.Wpf.Mvvm
             }
         }
 
+        public double Throttle
+        {
+            get => _throttle;
+            set
+            {
+                if (_throttle != value)
+                {
+                    _throttle = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
         private void OnTick(object? sender, EventArgs e)
         {
-            State = _flightModel.Step(State, new ControlInputs(), TickInterval);
+            State = _flightModel.Step(State, new ControlInputs { Throttle = _throttle }, TickInterval);
         }
     }
 }

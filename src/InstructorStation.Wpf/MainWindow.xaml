@@ -11,5 +11,7 @@
         <TextBlock FontSize="20" Text="{Binding State.AirspeedKt, StringFormat='Airspeed: {0:F0} kt'}" />
         <TextBlock FontSize="20" Text="{Binding State.HeadingDeg, StringFormat='Heading: {0:F0} deg'}" />
         <TextBlock FontSize="20" Text="{Binding State.VerticalSpeedFpm, StringFormat='Vertical Speed: {0:F0} fpm'}" />
+        <TextBlock FontSize="16" Margin="0,20,0,0" Text="{Binding Throttle, StringFormat='Throttle: {0:P0}'}" />
+        <Slider Minimum="0" Maximum="1" Value="{Binding Throttle}" />
     </StackPanel>
 </Window>
