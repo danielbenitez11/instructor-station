@@ -65,5 +65,32 @@ namespace FlightSim.Core.Tests
             Assert.Equal(359, newState.HeadingDeg, precision: 3);
         }
 
+        [Fact]
+        public void Step_WhenThrottleIsZero_AirspeedDecreases()
+        {
+            // Arrange
+            var model = new SimpleFlightModel();
+            var initialState = new AircraftState
+            {
+                AltitudeFt = 10000,
+                AirspeedKt = 250,
+                HeadingDeg = 90,
+                VerticalSpeedFpm = 0,
+                PitchDeg = 0,
+                BankDeg = 0
+            };
+            var controls = new ControlInputs
+            {
+                Throttle = 0,
+                PitchDeg = 0,
+                BankDeg = 0
+            };
+            var dt = TimeSpan.FromSeconds(1);
+            // Act
+            var newState = model.Step(initialState, controls, dt);
+            // Assert
+            Assert.Equal(225, newState.AirspeedKt, precision: 3);
+        }
+
     }
 }

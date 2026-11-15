@@ -14,9 +14,11 @@ namespace FlightSim.Core
 
             double rawHeading = state.HeadingDeg + turnRate * seconds;
 
-            double newHeading = NormalizeHeading(rawHeading);
+            double targetAirspeedKt = controls.Throttle * 300;
 
-            return state with { HeadingDeg = newHeading };
+            double newAirspeedKt = state.AirspeedKt + (targetAirspeedKt - state.AirspeedKt) * 0.1 * seconds;
+
+            return state with { HeadingDeg = NormalizeHeading(rawHeading), AirspeedKt = newAirspeedKt };
         }
         
 
