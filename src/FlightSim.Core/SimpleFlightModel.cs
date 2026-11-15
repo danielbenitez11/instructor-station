@@ -12,9 +12,22 @@ namespace FlightSim.Core
 
             double turnRate = state.BankDeg * 0.1;
 
-            double newHeading = ((state.HeadingDeg + turnRate * seconds) +360  )% 360;
+            double rawHeading = state.HeadingDeg + turnRate * seconds;
+
+            double newHeading = NormalizeHeading(rawHeading);
 
             return state with { HeadingDeg = newHeading };
         }
+        
+
+        private static double NormalizeHeading(double heading)
+        {
+            return (heading + 360) % 360;
+        }
+    
+    
+    
+    
     }
+
 }
