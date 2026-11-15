@@ -38,6 +38,9 @@ namespace InstructorStation.Wpf.Mvvm
                     _state = value;
 
                     OnPropertyChanged();
+                    OnPropertyChanged(nameof(PitchDeg));
+                    OnPropertyChanged(nameof(BankDeg));
+                    OnPropertyChanged(nameof(EngineFailed));
                 }
             }
         }
@@ -55,6 +58,8 @@ namespace InstructorStation.Wpf.Mvvm
             }
         }
 
+
+
         public double PitchDeg
         {
             get => State.PitchDeg;
@@ -65,6 +70,12 @@ namespace InstructorStation.Wpf.Mvvm
         {
             get =>  State.BankDeg;
             set => State = State with { BankDeg = value };
+        }
+
+        public bool EngineFailed
+        {
+            get => State.EngineFailed;
+            set => State = State with { EngineFailed = value };
         }
 
         private void OnTick(object? sender, EventArgs e)
